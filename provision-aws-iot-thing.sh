@@ -82,7 +82,7 @@ if [ ! -f $DEVICE_CERT_PATH ]; then
 
   echo "Creating Thing Policy"
   aws iot create-policy \
-    --policy-name "${THING_NAME}-Policy" \
+    --policy-name "device-client-provisioner-policy" \
     --policy-document file://"${RUN_DIR}"/thing-policy.json
 
   echo "Attaching Thing Policy to Thing Certificate"
