@@ -5,17 +5,12 @@ if [ -z "$THING_NAME" ]; then
   exit 0
 fi
 
-if [ -z "$AWS_DEFAULT_REGION" ]; then
-  echo "AWS_DEFAULT_REGION is required"
-  exit 0
-fi
-
 RUN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 ACCOUNT_ID=$(aws --output text sts get-caller-identity --query 'Account')
 MQTT_ENDPOINT=$(aws --output text iot describe-endpoint --endpoint-type iot:Data-ATS --query 'endpointAddress')
 
-CERTS_DIR=$HOME/aws-iot-device-client/certs
+CERTS_DIR=$HOME/${THING_NAME}-certs
 ROOT_CERT_PATH=${CERTS_DIR}/AmazonRootCA1.pem
 DEVICE_CERT_PATH=${CERTS_DIR}/${THING_NAME}_thing.cert.pem
 PUBLIC_KEY_PATH=${CERTS_DIR}/${THING_NAME}_thing.public.key

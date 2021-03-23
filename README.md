@@ -56,14 +56,13 @@ sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 Set the following environment variables, and then run the provided provisioning script. This script makes use of the AWS CLI to provision your AWS IoT Thing in the Device Registry, generate device certificates and thing policies, and attaches the thing to the certificate. The device certificates are saved under `$HOME/aws-iot-device-client/certs`.
 
 ```
-export AWS_DEFAULT_REGION=us-east-1
-export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
-export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  export AWS_DEFAULT_REGION=us-east-1
+  export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+  export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  export THING_NAME=My-Unique-Thing-Name
+  export THING_TYPE_NAME=My-Thing-Type
 
-export THING_NAME=My-Unique-Thing-Name
-export THING_TYPE_NAME=My-Thing-Type
-
-./provision-aws-iot-thing.sh
+  ./provision-aws-iot-thing.sh
 ```
 
 # Download, Build and Configure the AWS IoT Device Client
@@ -71,6 +70,11 @@ export THING_TYPE_NAME=My-Thing-Type
 This script clones the AWS IoT Device Client Github repo, builds the repo using the provided cmake build scripts, and then configures the Device Client. The repo is cloned to `$HOME/aws-iot-device-client`, and all of the build artifacts are created within that directory.
 
 ```
+  export AWS_DEFAULT_REGION=us-east-1
+  export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+  export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  export THING_NAME=My-Unique-Thing-Name
+
   ./fetch-build-and-configure-aws-iot-device-client.sh
 ```
 

@@ -1,8 +1,11 @@
 #! /bin/bash
 
-set -x
-
 source ./conf
+
+if [ -z "$AWS_DEFAULT_REGION" ]; then
+  echo "AWS_DEFAULT_REGION is required"
+  exit 0
+fi
 
 if [ -z "$THING_TYPE_NAME" ]; then
   echo "THING_TYPE_NAME is required"
