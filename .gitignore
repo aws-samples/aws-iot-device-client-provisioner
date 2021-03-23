@@ -1,3 +1,4 @@
 my*test.sh
 thing-policy.json
 aws-iot-device-client/
+aws-iot-device-client.conf
