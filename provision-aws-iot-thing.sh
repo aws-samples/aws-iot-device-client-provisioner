@@ -95,3 +95,6 @@ if [ ! -f $DEVICE_CERT_PATH ]; then
     --thing-name "${THING_NAME}" \
     --principal "${CERTIFICATE_ARN}"
 fi
+
+chmod 700 $CERTS_DIR
+chmod 644 $DEVICE_CERT_PATH

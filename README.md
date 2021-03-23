@@ -81,5 +81,5 @@ This script clones the AWS IoT Device Client Github repo, builds the repo using 
 # Run the AWS IoT Device Client. This command runs the executable
 
 ```
-  $HOME/aws-iot-device-client/aws-iot-device-client
+  $HOME/aws-iot-device-client/build/aws-iot-device-client
 ```

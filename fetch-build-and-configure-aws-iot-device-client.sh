@@ -26,4 +26,6 @@ jq --arg endpoint "$MQTT_ENDPOINT" \
 
 rm ./config-template.json
 mv ./aws-iot-device-client.conf $HOME/.aws-iot-device-client/aws-iot-device-client.conf
+chmod 745 $HOME/.aws-iot-device-client/aws-iot-device-client.conf
+
 cat $HOME/.aws-iot-device-client/aws-iot-device-client.conf
