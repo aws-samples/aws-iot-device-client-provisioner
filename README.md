@@ -1,8 +1,8 @@
-Freshly minted Raspberry Pi v4 with Raspberry Pi OS Lite (32-bit)
+# aws-iot-device-client-provisioner
+
+This repository is complimentary to the usage of the [AWS IoT Device Client](https://github.com/awslabs/aws-iot-device-client/). The Device Client's setup scripts assumes that you have already provisioned an AWS IoT Thing, including generating device certificates (or alternatively have configured Fleet Provisioning). This project provides some convenience scripts which generates all of those resources, including the Device Client configuration file which makes reference to those resources, in order to get up and running with the Device Client as quickly as possible.
 
 # Provide AWS credentials to the device
-
-`Instructions copied from https://raw.githubusercontent.com/awsdocs/aws-iot-greengrass-v2-developer-guide/main/doc_source/quick-installation.md`
 
 Provide your AWS credentials to your device so that the installer can provision the required AWS resources. For more information about the required permissions, see [Minimal IAM policy for installer to provision resources](provision-minimal-iam-policy.md).
 
@@ -57,8 +57,8 @@ export AWS_DEFAULT_REGION=us-east-1
 export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
-export THING_NAME=My_Unique_Thing_Name
-export THING_TYPE_NAME=My_Thing_Name
+export THING_NAME=My-Unique-Thing-Name
+export THING_TYPE_NAME=My-Thing-Type
 
 ./provision-aws-iot-thing.sh
 ```

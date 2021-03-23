@@ -1,6 +1,7 @@
 #! /bin/bash
 
-RUN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source ./conf
+
 cd $HOME/aws-iot-device-client
 
 git clone https://github.com/awslabs/aws-iot-device-client .

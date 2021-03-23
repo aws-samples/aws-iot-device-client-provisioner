@@ -1,25 +1,13 @@
 #! /bin/bash
 
-RUN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+set -x
 
-if [ -z "$THING_NAME" ]; then
-  echo "Environment variable THING_NAME is required"
-  exit 0
-fi
+source ./conf
 
 if [ -z "$THING_TYPE_NAME" ]; then
-  echo "Environment variable THING_TYPE_NAME is required"
+  echo "THING_TYPE_NAME is required"
   exit 0
 fi
-
-ACCOUNT_ID=$(aws --output text sts get-caller-identity --query 'Account')
-MQTT_ENDPOINT=$(aws --output text iot describe-endpoint --endpoint-type iot:Data-ATS --query 'endpointAddress')
-
-CERTS_DIR=$HOME/aws-iot-device-client/certs
-ROOT_CERT_PATH=${CERTS_DIR}/AmazonRootCA1.pem
-DEVICE_CERT_PATH=${CERTS_DIR}/${THING_NAME}_thing.cert.pem
-PUBLIC_KEY_PATH=${CERTS_DIR}/${THING_NAME}_thing.public.key
-PRIVATE_KEY_PATH=${CERTS_DIR}/${THING_NAME}_thing.private.key
 
 if ! aws --output text iot list-thing-types --query 'thingTypes[].thingTypeName' | grep -q "${THING_TYPE_NAME}"; then
   echo "Thing Type with name \"${THING_TYPE_NAME}\" does not exist. Creating AWS resources"
@@ -38,7 +26,7 @@ else
   echo "Thing with name \"${THING_NAME}\" already exists - skipping resource creation"
 fi
 
-if [ ! -f $CERTS_DIR ]; then
+if [ ! -d $CERTS_DIR ]; then
   mkdir -p $CERTS_DIR
 fi
 
@@ -66,12 +54,12 @@ if [ ! -f $DEVICE_CERT_PATH ]; then
             \"iot:Publish\",
             \"iot:Receive\"
           ],
-          \"Resource\": [\"arn:aws:iot:$AWS_REGION:$ACCOUNT_ID:topic/*\"]
+          \"Resource\": [\"arn:aws:iot:$AWS_DEFAULT_REGION:$ACCOUNT_ID:topic/*\"]
         },
         {
           \"Effect\": \"Allow\",
           \"Action\": [\"iot:Subscribe\"],
-          \"Resource\": [\"arn:aws:iot:$AWS_REGION:$ACCOUNT_ID:topicfilter/*\"]
+          \"Resource\": [\"arn:aws:iot:$AWS_DEFAULT_REGION:$ACCOUNT_ID:topicfilter/*\"]
         },
         {
           \"Effect\": \"Allow\",
