@@ -4,6 +4,10 @@ set -x
 
 source ./conf
 
+if [ ! -d $JOBS_HANDLER_DIRECTORY ]; then
+  mkdir -p $JOBS_HANDLER_DIRECTORY
+fi
+
 cd $HOME
 
 git clone https://github.com/awslabs/aws-iot-device-client
@@ -21,7 +25,8 @@ jq --arg endpoint "$MQTT_ENDPOINT" \
   --arg cert "$DEVICE_CERT_PATH" \
   --arg key "$PRIVATE_KEY_PATH" \
   --arg rootCA "$ROOT_CERT_PATH" \
-  '.endpoint = $endpoint | ."thing-name" = $thingName | .cert = $cert | .key = $key | ."root-ca" = $rootCA' \
+  --arg jobsHandlerDirectory "$JOBS_HANDLER_DIRECTORY" \
+  '.endpoint = $endpoint | ."thing-name" = $thingName | .cert = $cert | .key = $key | ."root-ca" = $rootCA | .jobs."handler-directory" = $jobsHandlerDirectory' \
   ./config-template.json > ./aws-iot-device-client.conf
 
 rm ./config-template.json
