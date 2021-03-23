@@ -46,7 +46,10 @@ sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
 # Clone this repo to your device
 
-git clone TODO-github-repo-url
+```
+  git clone https://github.com/dave-malone/aws-iot-device-client-provisioner
+  cd aws-iot-device-client-provisioner
+```
 
 # Provision Your AWS IoT Thing
 
