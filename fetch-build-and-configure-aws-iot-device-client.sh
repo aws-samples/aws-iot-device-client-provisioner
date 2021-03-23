@@ -8,6 +8,11 @@ if [ ! -d $JOBS_HANDLER_DIRECTORY ]; then
   mkdir -p $JOBS_HANDLER_DIRECTORY
 fi
 
+if [ ! -d /var/log/aws-iot-device-client/ ]; then
+  sudo mkdir /var/log/aws-iot-device-client/
+  sudo chmod 745 /var/log/aws-iot-device-client/
+fi
+
 cd $HOME
 
 git clone https://github.com/awslabs/aws-iot-device-client
@@ -30,6 +35,7 @@ jq --arg endpoint "$MQTT_ENDPOINT" \
   ./config-template.json > ./aws-iot-device-client.conf
 
 rm ./config-template.json
+mkdir $HOME/.aws-iot-device-client
 mv ./aws-iot-device-client.conf $HOME/.aws-iot-device-client/aws-iot-device-client.conf
 chmod 745 $HOME/.aws-iot-device-client/
 chmod 644 $HOME/.aws-iot-device-client/aws-iot-device-client.conf

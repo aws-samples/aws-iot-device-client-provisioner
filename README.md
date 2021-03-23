@@ -83,3 +83,10 @@ This script clones the AWS IoT Device Client Github repo, builds the repo using 
 ```
   $HOME/aws-iot-device-client/build/aws-iot-device-client
 ```
+
+
+# Troubleshooting
+
+On OSX, you will need to remove any references to s2n from `CMakeLists.txt`. 
+
+You may also need to explicitly set OPENSSL_ROOT_DIR as an environment variable before you can build the device client. `export OPENSSL_ROOT_DIR=/usr/local/opt/openssl`
