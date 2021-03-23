@@ -10,6 +10,7 @@ RUN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ACCOUNT_ID=$(aws --output text sts get-caller-identity --query 'Account')
 MQTT_ENDPOINT=$(aws --output text iot describe-endpoint --endpoint-type iot:Data-ATS --query 'endpointAddress')
 
+THING_POLICY_NAME=device-client-provisioner-policy
 CERTS_DIR=$HOME/${THING_NAME}-certs
 JOBS_HANDLER_DIRECTORY=$HOME/${THING_NAME}-jobs-handler
 ROOT_CERT_PATH=${CERTS_DIR}/AmazonRootCA1.pem
