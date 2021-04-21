@@ -98,3 +98,4 @@ fi
 
 chmod 700 $CERTS_DIR
 chmod 644 $DEVICE_CERT_PATH
+chmod 644 $ROOT_CERT_PATH
