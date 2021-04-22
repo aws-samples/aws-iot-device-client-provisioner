@@ -4,7 +4,7 @@ This repository is complimentary to the usage of the [AWS IoT Device Client](htt
 
 # Provide AWS credentials to the device
 
-Provide your AWS credentials to your device so that the installer can provision the required AWS resources. For more information about the required permissions, see [Minimal IAM policy for installer to provision resources](provision-minimal-iam-policy.md).
+Provide your AWS credentials to your device so that the installer can provision the required AWS resources. 
 
 
 **To provide AWS credentials to the device**
@@ -78,7 +78,9 @@ This script clones the AWS IoT Device Client Github repo, builds the repo using 
   ./fetch-build-and-configure-aws-iot-device-client.sh
 ```
 
-# Run the AWS IoT Device Client. This command runs the executable
+# Run the AWS IoT Device Client
+
+This command runs the Device Client executable
 
 ```
   $HOME/aws-iot-device-client/build/aws-iot-device-client
@@ -87,6 +89,8 @@ This script clones the AWS IoT Device Client Github repo, builds the repo using 
 
 # Troubleshooting
 
-On OSX, you will need to remove any references to s2n from `CMakeLists.txt`. 
+On OSX, you will need to remove any references to s2n from `CMakeLists.txt`.
 
-You may also need to explicitly set OPENSSL_ROOT_DIR as an environment variable before you can build the device client. `export OPENSSL_ROOT_DIR=/usr/local/opt/openssl`
+You may also need to explicitly set `OPENSSL_ROOT_DIR` as an environment variable before you can build the device client.
+For example:
+`export OPENSSL_ROOT_DIR=/usr/local/opt/openssl`
