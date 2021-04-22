@@ -4,10 +4,6 @@ set -x
 
 source ./conf
 
-if [ ! -d $JOBS_HANDLER_DIRECTORY ]; then
-  mkdir -p $JOBS_HANDLER_DIRECTORY
-fi
-
 if [ ! -d /var/log/aws-iot-device-client/ ]; then
   sudo mkdir /var/log/aws-iot-device-client/
   sudo chmod 745 /var/log/aws-iot-device-client/
@@ -30,8 +26,7 @@ jq --arg endpoint "$MQTT_ENDPOINT" \
   --arg cert "$DEVICE_CERT_PATH" \
   --arg key "$PRIVATE_KEY_PATH" \
   --arg rootCA "$ROOT_CERT_PATH" \
-  --arg jobsHandlerDirectory "$JOBS_HANDLER_DIRECTORY" \
-  '.endpoint = $endpoint | ."thing-name" = $thingName | .cert = $cert | .key = $key | ."root-ca" = $rootCA | .jobs."handler-directory" = $jobsHandlerDirectory' \
+  '.endpoint = $endpoint | ."thing-name" = $thingName | .cert = $cert | .key = $key | ."root-ca" = $rootCA' \
   ./config-template.json > ./aws-iot-device-client.conf
 
 rm ./config-template.json

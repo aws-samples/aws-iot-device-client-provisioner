@@ -12,7 +12,6 @@ MQTT_ENDPOINT=$(aws --output text iot describe-endpoint --endpoint-type iot:Data
 
 THING_POLICY_NAME=device-client-provisioner-policy
 CERTS_DIR=$HOME/${THING_NAME}-certs
-JOBS_HANDLER_DIRECTORY=$HOME/${THING_NAME}-jobs-handler
 ROOT_CERT_PATH=${CERTS_DIR}/AmazonRootCA1.pem
 DEVICE_CERT_PATH=${CERTS_DIR}/${THING_NAME}_thing.cert.pem
 PUBLIC_KEY_PATH=${CERTS_DIR}/${THING_NAME}_thing.public.key
