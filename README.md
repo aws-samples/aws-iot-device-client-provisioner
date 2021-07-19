@@ -102,7 +102,7 @@ This command runs the Device Client executable
 
 # Troubleshooting
 
-On OSX, you will need to remove any references to s2n from `CMakeLists.txt`.
+On OSX, you may need to remove any references to s2n from `CMakeLists.txt`.
 
 You may also need to explicitly set `OPENSSL_ROOT_DIR` as an environment variable before you can build the device client.
 For example:
