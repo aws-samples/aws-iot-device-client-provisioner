@@ -30,7 +30,12 @@ cd $HOME
 git clone https://github.com/awslabs/aws-iot-device-client
 cd aws-iot-device-client
 
-mkdir build && cd build && cmake ../
+if [ ! -d ./build/ ]; then
+  mkdir build
+fi
+
+cd build 
+cmake ../
 cmake --build . --target aws-iot-device-client
 
 cd $RUN_DIR
