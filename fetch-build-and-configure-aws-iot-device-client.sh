@@ -37,6 +37,9 @@ cd $RUN_DIR
 
 # Generate Device Client Configuration
 cp $HOME/aws-iot-device-client/config-template.json ./config-template.json
+
+jq -r 'del(."fleet-provisioning", .samples)' ./config-template.json > ./config-template.json
+
 jq --arg endpoint "$MQTT_ENDPOINT" \
   --arg thingName "$THING_NAME" \
   --arg cert "$DEVICE_CERT_PATH" \
