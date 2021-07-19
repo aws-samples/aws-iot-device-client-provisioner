@@ -20,10 +20,10 @@ set -x
 
 source ./conf
 
-if [ ! -d /var/log/aws-iot-device-client/ ]; then
-  sudo mkdir /var/log/aws-iot-device-client/
-  sudo chmod 745 /var/log/aws-iot-device-client/
-fi
+#if [ ! -d $HOME/aws-iot-device-client/log/ ]; then
+#  sudo mkdir $HOME/aws-iot-device-client/log/
+#  sudo chmod 745 $HOME/aws-iot-device-client/log/
+#fi
 
 cd $HOME
 
