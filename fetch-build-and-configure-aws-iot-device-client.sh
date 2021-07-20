@@ -37,6 +37,10 @@ if [ ! -d ./build/ ]; then
   mkdir build
 fi
 
+if [ ! -d $HOME/.aws-iot-device-client/log/ ]; then
+  mkdir $HOME/.aws-iot-device-client/log/
+fi
+
 cd build 
 cmake ../
 cmake --build . --target aws-iot-device-client --target test-aws-iot-device-client
@@ -51,7 +55,8 @@ jq --arg endpoint "$MQTT_ENDPOINT" \
   --arg key "$PRIVATE_KEY_PATH" \
   --arg rootCA "$ROOT_CERT_PATH" \
   --arg jobsHandlerDirectory "$HOME/.aws-iot-device-client/jobs/" \
-  'del(."fleet-provisioning", .samples) | .endpoint = $endpoint | ."thing-name" = $thingName | .cert = $cert | .key = $key | ."root-ca" = $rootCA | .jobs."handler-directory" = $jobsHandlerDirectory' \
+  --arg logFile "$HOME/.aws-iot-device-client/log/aws-iot-device-client.log" \
+  'del(."fleet-provisioning", .samples) | .logging.file = $logFile | .endpoint = $endpoint | ."thing-name" = $thingName | .cert = $cert | .key = $key | ."root-ca" = $rootCA | .jobs."handler-directory" = $jobsHandlerDirectory' \
   ./config-template.json > ./aws-iot-device-client.conf
 
 rm ./config-template.json
