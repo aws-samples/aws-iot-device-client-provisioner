@@ -36,7 +36,7 @@ fi
 
 cd build 
 cmake ../
-cmake --build . --target aws-iot-device-client
+cmake --build . --target aws-iot-device-client --target test-aws-iot-device-client
 
 cd $RUN_DIR
 
