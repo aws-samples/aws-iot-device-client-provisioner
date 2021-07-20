@@ -91,12 +91,18 @@ This script clones the AWS IoT Device Client Github repo, builds the repo using 
   ./fetch-build-and-configure-aws-iot-device-client.sh
 ```
 
-# Run the AWS IoT Device Client
-
-This command runs the Device Client executable
+# Run the Device Client Tests
 
 ```
-  $HOME/aws-iot-device-client/build/aws-iot-device-client
+  $HOME/aws-iot-device-client/build/test/test-aws-iot-device-client
+```
+
+# Run the AWS IoT Device Client
+
+This command will launch the device client as a background process. Device client logs will be written to `$HOME/.aws-iot-device-client/log/aws-iot-device-client.log`
+
+```
+  $HOME/aws-iot-device-client/build/aws-iot-device-client &
 ```
 
 
@@ -104,6 +110,5 @@ This command runs the Device Client executable
 
 On OSX, you may need to remove any references to s2n from `CMakeLists.txt`.
 
-You may also need to explicitly set `OPENSSL_ROOT_DIR` as an environment variable before you can build the device client.
-For example:
-`export OPENSSL_ROOT_DIR=/usr/local/opt/openssl`
+
+You may also need to explicitly set `OPENSSL_ROOT_DIR` as an environment variable before you can build the device client. For example: `export OPENSSL_ROOT_DIR=/usr/local/opt/openssl`
