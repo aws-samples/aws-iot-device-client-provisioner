@@ -20,10 +20,13 @@ set -x
 
 source ./conf
 
-#if [ ! -d $HOME/aws-iot-device-client/log/ ]; then
-#  sudo mkdir $HOME/aws-iot-device-client/log/
-#  sudo chmod 745 $HOME/aws-iot-device-client/log/
-#fi
+if [ ! -d $HOME/.aws-iot-device-client ]; then
+  mkdir $HOME/.aws-iot-device-client
+fi
+
+if [ ! -d $HOME/.aws-iot-device-client/jobs/ ]; then
+  mkdir $HOME/.aws-iot-device-client/jobs/
+fi
 
 cd $HOME
 
@@ -42,27 +45,20 @@ cd $RUN_DIR
 
 # Generate Device Client Configuration
 cp $HOME/aws-iot-device-client/config-template.json ./config-template.json
-
-#jq -r 'del(."fleet-provisioning", .samples)' ./config-template.json > ./config-template.json
-
 jq --arg endpoint "$MQTT_ENDPOINT" \
   --arg thingName "$THING_NAME" \
   --arg cert "$DEVICE_CERT_PATH" \
   --arg key "$PRIVATE_KEY_PATH" \
   --arg rootCA "$ROOT_CERT_PATH" \
-  --arg jobsHandlerDirectory "$HOME/aws-iot-device-client/sample-job-handlers/" \
+  --arg jobsHandlerDirectory "$HOME/.aws-iot-device-client/jobs/" \
   'del(."fleet-provisioning", .samples) | .endpoint = $endpoint | ."thing-name" = $thingName | .cert = $cert | .key = $key | ."root-ca" = $rootCA | .jobs."handler-directory" = $jobsHandlerDirectory' \
   ./config-template.json > ./aws-iot-device-client.conf
 
 rm ./config-template.json
-
-if [ ! -d $HOME/.aws-iot-device-client ]; then
-  mkdir $HOME/.aws-iot-device-client
-fi
-
 mv ./aws-iot-device-client.conf $HOME/.aws-iot-device-client/aws-iot-device-client.conf
+
 chmod 745 $HOME/.aws-iot-device-client/
 chmod 644 $HOME/.aws-iot-device-client/aws-iot-device-client.conf
-chmod -R 700 $HOME/aws-iot-device-client/sample-job-handlers/
+chmod -R 700 $HOME/.aws-iot-device-client/jobs/
 
 cat $HOME/.aws-iot-device-client/aws-iot-device-client.conf
