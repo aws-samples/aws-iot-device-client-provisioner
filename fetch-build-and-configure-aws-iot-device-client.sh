@@ -59,6 +59,8 @@ mv ./aws-iot-device-client.conf $HOME/.aws-iot-device-client/aws-iot-device-clie
 
 chmod 745 $HOME/.aws-iot-device-client/
 chmod 644 $HOME/.aws-iot-device-client/aws-iot-device-client.conf
+
+cp $HOME/aws-iot-device-client/sample-job-handlers/* $HOME/.aws-iot-device-client/jobs/
 chmod -R 700 $HOME/.aws-iot-device-client/jobs/
 
 cat $HOME/.aws-iot-device-client/aws-iot-device-client.conf
